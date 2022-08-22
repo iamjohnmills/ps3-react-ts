@@ -2,4 +2,4 @@
 
 Made with React + Typescript. Includes SVG + Filters, Canvas + RequestAnimationFrame, and more.
 
-[![PS3](https://raw.githubusercontent.com/iamjohnmills/ps3-ui-react-ts/master/screenshot.gif)](https://raw.githubusercontent.com/iamjohnmills/ps3-ui-react-ts/master/screenshot.gif)
+[![PS3](https://raw.githubusercontent.com/iamjohnmills/ps3-react-ts/master/screenshot.gif)](https://raw.githubusercontent.com/iamjohnmills/ps3-ui-react-ts/master/screenshot.gif)
