@@ -1,8 +1,5 @@
-# React Typescript Starter Template
-A simple react-typescript-vite template with eventbus.
+#### PS3 XMB Menu
 
-React, Typescript, Vite
+Made with React + Typescript. Includes SVG + Filters, Canvas + RequestAnimationFrame, and more.
 
-Install: ```npm install```
-
-Run: ```npm run dev```
+[![PS3](https://raw.githubusercontent.com/iamjohnmills/ps3-ui-react-ts/master/screenshot.gif)](https://raw.githubusercontent.com/iamjohnmills/ps3-ui-react-ts/master/screenshot.gif)
