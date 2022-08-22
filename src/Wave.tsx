@@ -24,11 +24,9 @@ class Wave extends React.Component<IAppProps, IAppState> {
 		this.ctx = this.el_canvas.current.getContext("2d");
 		this.el_canvas.current.width = window.innerWidth > 1920 ? window.innerWidth : 1920;
 		this.el_canvas.current.height = this.waveHeight;
-		// this.el_canvas_wrap.current.style.height = `${this.waveHeight - 1}px`;
 		for (let i = 0; i < 3; i++) {
 			this.waves.push( this.wave(1, this.nodes) );
 		}
-		console.log(this.waves)
     this.update();
   }
 	wave(lambda, nodes_length) {
@@ -51,23 +49,14 @@ class Wave extends React.Component<IAppProps, IAppState> {
 		var diff = function(a,b) {
 			return (b - a)/2 + a;
 		}
-
-
 		var gradient = this.ctx.createLinearGradient(0, 0, 0, this.el_canvas.current.height );
 		gradient.addColorStop(0, "rgb(255, 255, 255, 0.5)");
 		gradient.addColorStop(0.5, "rgb(255, 255, 255, 0.15)");
 		gradient.addColorStop(1, "rgb(255, 255, 255, 0)");
-
-		// var gradient = this.ctx.createRadialGradient(this.el_canvas.current.width/2, 0, 0, this.el_canvas.current.width/2, 0, 1000);
-	  // gradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
-	  // gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
 		this.ctx.fillStyle = gradient;
-
 		this.ctx.beginPath();
 		this.ctx.moveTo(0,this.el_canvas.current.height + 1 );
 		this.ctx.lineTo(obj.nodes[0][0],obj.nodes[0][1] );
-
 		for (var i = 0; i < obj.nodes.length; i++) {
 			if (obj.nodes[i+1]) {
 				this.ctx.quadraticCurveTo(
@@ -86,7 +75,6 @@ class Wave extends React.Component<IAppProps, IAppState> {
 		this.ctx.stroke();
 	}
 	update() {
-    // var fill = window.getComputedStyle(document.querySelector(".header"),null).getPropertyValue("background-color");
 		var fill = 'transparent'
 		this.ctx.fillStyle = fill;
 		this.ctx.globalCompositeOperation = "source-in";
@@ -99,24 +87,16 @@ class Wave extends React.Component<IAppProps, IAppState> {
 			this.drawWave(this.waves[i]);
 		}
 		this.ctx.fillStyle = fill;
-
 		this.ctx.globalCompositeOperation = "destination-out";
-
-		var mask = this.ctx.createRadialGradient(this.el_canvas.current.width/2, 0, 0, this.el_canvas.current.width/2, 0, this.el_canvas.current.width);
+		var mask = this.ctx.createRadialGradient(this.el_canvas.current.width/2, -200, 0, this.el_canvas.current.width/2, 0, this.el_canvas.current.width);
 	  mask.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
 	  mask.addColorStop(0.55, 'rgba(255, 255, 255, 1)');
-
-		// const mask = this.ctx.createLinearGradient(0, 0, 0, this.el_canvas.current.height);
-		// mask.addColorStop(0, "rgba(255, 255, 255, 0)");
-		// mask.addColorStop(1, "rgba(255, 255, 255, 1)");
 		this.ctx.fillStyle = mask;
 		this.ctx.fillRect(0, 0, this.el_canvas.current.width, this.el_canvas.current.height);
-
     requestAnimationFrame(() => {
 			this.update()
 		});
 	}
-
 	render() { return (
 		<div className="canvas-container">
 				<canvas ref={this.el_canvas}></canvas>

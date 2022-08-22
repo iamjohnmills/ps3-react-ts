@@ -5,25 +5,11 @@ import Menu from "./Menu";
 import {MenuData} from "./MenuData.ts"
 import menu_sound from './menu-click.wav';
 
-interface Menu {
-	label: string,
-	icon: string,
-	description?: string,
-	menu?: array<Menu>
-}
-
-interface IAppProps {}
-
-interface IAppState {
-}
-
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
 		super(props);
     this.el_app = React.createRef();
 		this.menu_sound = new Audio(menu_sound);
-		this.state = {
-		};
 	}
 	componentDidMount(): void {
 		this.init();

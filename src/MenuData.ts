@@ -4,7 +4,7 @@ const MenuData = [
   	icon: 'home',
   	menu: [
   		{ label: 'Turn Off System', icon: 'power' },
-  		{ label: 'John', icon: 'user' },
+  		{ label: 'John', icon: 'user', description: 'github.com/iamjohnmills' },
   		{ label: 'Create New User', icon: 'user-add' },
   	]
   },
@@ -29,7 +29,7 @@ const MenuData = [
   		{ label: 'Security Settings', icon: 'settings-security' },
   		{ label: 'Remote Play Settings', icon: 'settings-psp' },
   		{ label: 'Network Settings', icon: 'settings-internet' },
-  		{ label: 'Folder', icon: 'folder' },
+  		// { label: 'Folder', icon: 'folder' },
   	]
   },
   {
@@ -69,14 +69,10 @@ const MenuData = [
       { label: 'Saved Data Utility', icon: 'folder-game' },
       { label: 'Memory Card Utility (PS / PS2)', icon: 'memory-card-copy' },
       { label: 'Remote Play', icon: 'psp' },
-
   		{ label: 'Memory Card', icon: 'memory-card' },
   		{ label: 'Memory Card 1', icon: 'memory-card-1' },
   		{ label: 'Memory Card 2', icon: 'memory-card-2' },
   		{ label: 'Memory Card Add', icon: 'memory-card-add' },
-
-
-
   	]
   },
   {
@@ -101,23 +97,19 @@ const MenuData = [
   	label: 'Friends',
   	icon: 'user-duplicate',
   	menu: [
-  		{ label: 'Add Friend', icon: 'user-add', description: 'Menu description A 2' },
+  		{ label: 'Add Friend', icon: 'user-add' },
   		{ label: 'Blocklist', icon: 'user-block' },
-
   		{ label: 'Message Box', icon: 'messages' },
   		{ label: 'Create Message', icon: 'messages-add' },
   		{ label: 'Received', icon: 'inbox' },
   		{ label: 'Sent', icon: 'inbox-up' },
   		{ label: 'Send Messages', icon: 'inbox-send' },
-
   		{ label: 'Players Met', icon: 'ninja' },
   		{ label: 'Start New Chat', icon: 'headset' },
   		{ label: 'Account Management', icon: 'friends-edit' },
-      { label: 'Mysterious Face', icon: 'face' },
-
+      // { label: 'Mysterious Face', icon: 'face', description: 'What does it mean?' },
   	]
   },
-
 ];
 
 export { MenuData }

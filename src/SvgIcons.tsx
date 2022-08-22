@@ -1,19 +1,14 @@
+// Icon source: https://www.deviantart.com/esseti/art/PlayStation3-XMB-Icons-79824699
+
 import React from 'react'
 
 interface IAppProps {
 	name: string,
 }
 
-interface IAppState {
-}
-
 class SvgIcons extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
 		super(props);
-		this.state = {
-		};
-	}
-	componentDidMount(): void {
 	}
 	render() {
 		return (

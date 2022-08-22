@@ -10,9 +10,24 @@ interface IAppProps {
 	parent_active?: boolean
 }
 
+interface Menu {
+	label: string,
+	icon: string,
+	description?: string,
+	menu?: array<Menu>
+}
+
+interface NavigateOptions {
+	x?: number,
+	y?: number,
+}
+
 interface IAppState {
 	class: string,
   classes: Array<string>,
+	left: string,
+	top: string,
+	active_item: number,
 }
 
 class Menu extends React.Component<IAppProps, IAppState> {
@@ -42,7 +57,7 @@ class Menu extends React.Component<IAppProps, IAppState> {
 		if(this.props.menu && id >= this.props.menu.length) return this.props.menu.length - 1;
 		return id;
 	}
-	handleNavigate(options:any): void {
+	handleNavigate(options:NavigateOptions): void {
 		if(!this.props.parent_active && this.props.direction === 'x' && options.x){
 			const next = this.getNextItem(this.state.active_item + options.x);
 			this.setState({ active_item: next })

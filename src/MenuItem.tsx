@@ -3,6 +3,13 @@ import EventBus from "./EventBus";
 import SvgIcons from "./SvgIcons";
 import Menu from "./Menu";
 
+interface Menu {
+	label: string,
+	icon: string,
+	description?: string,
+	menu?: array<Menu>
+}
+
 interface IAppProps {
 	id: string,
 	menu: Menu,
