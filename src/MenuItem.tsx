@@ -3,16 +3,16 @@ import EventBus from "./EventBus";
 import SvgIcons from "./SvgIcons";
 import Menu from "./Menu";
 
-interface Menu {
+interface IAppMenu {
   label: string,
   icon: string,
   description?: string,
-  menu?: array<Menu>
+  menu?: Array<IAppMenu>
 }
 
 interface IAppProps {
-  id: string,
-  menu: Menu,
+  id: number,
+  menu: IAppMenu,
   active: boolean,
 }
 
@@ -27,7 +27,6 @@ class MenuItem extends React.Component<IAppProps, IAppState> {
     this.state = {
       class: 'item',
       classes: [],
-      active: false,
     };
   }
   componentDidMount(): void {
@@ -40,7 +39,7 @@ class MenuItem extends React.Component<IAppProps, IAppState> {
   init(): void {
     this.setState({ classes: [this.state.class, this.props.active ? 'active': ''] });
   }
-  render() { return (
+  render(): React.ReactElement { return (
   <div className={this.state.classes.join(' ')} data-id={this.props.id}>
     <div className="icon">
       <SvgIcons name={this.props.menu.icon} />
@@ -52,7 +51,7 @@ class MenuItem extends React.Component<IAppProps, IAppState> {
       : null }
     </div>
     { this.props.menu.menu ?
-      <Menu id={this.props.id} parent_active={this.props.active} menu={this.props.menu.menu} direction="y" />
+      <Menu parent_active={this.props.active} menu={this.props.menu.menu} axis="y" start_top="-130px" />
     : null }
   </div>
   ) }

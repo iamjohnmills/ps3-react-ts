@@ -1,12 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // chokidarWatchOptions: {
-  //   usePolling: true
-  // },
   server: {
     port: 3000,
     host: true,
@@ -15,4 +11,7 @@ export default defineConfig({
       clientPort: 5001,
     },
   },
+  preview:{
+    port: 3000
+  }
 })

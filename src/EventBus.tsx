@@ -1,9 +1,19 @@
+interface IAppCallback{
+  (message:any):void;
+}
+
+interface IAppDetail{
+  detail: any
+}
+
 const EventBus = {
-  on(event: string, callback: Function): void {
-    document.addEventListener(event, (e:CustomEvent) => callback(e.detail) )
+  on(event_name:string, callback:Function): void {
+    document.addEventListener(event_name, (event: Event) => (callback as IAppCallback)((event as CustomEvent).detail) );
   },
-  dispatch(event: string, data?: any): void {
-    document.dispatchEvent(new CustomEvent(event, { detail: data } ));
+  dispatch(event_name:string, data?:any): void {
+    const detail:IAppDetail = { detail: data };
+    const dispatch:CustomEvent = new CustomEvent(event_name, detail);
+    document.dispatchEvent(dispatch);
   },
   remove(event: string, callback: any): void  {
     document.removeEventListener(event, callback);

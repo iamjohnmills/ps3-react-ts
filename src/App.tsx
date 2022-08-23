@@ -2,36 +2,42 @@ import React from 'react'
 import EventBus from "./EventBus";
 import Wave from "./Wave";
 import Menu from "./Menu";
-import {MenuData} from "./MenuData.ts"
-import menu_sound from './menu-click.wav';
+import {MenuData} from "./MenuData"
+import menu_sound_file from './menu-click.wav';
 
-class App extends React.Component<IAppProps, IAppState> {
+interface IAppProps {}
+
+class App extends React.Component<IAppProps, {}> {
+  private el_app = React.createRef<HTMLDivElement>();
+  private menu_sound = new Audio(menu_sound_file);
+  private menu_data:Array<any> = MenuData;
+  private allowed_x:Array<string> = ['ArrowRight','ArrowLeft']
+  private allowed_y:Array<string> = ['ArrowUp','ArrowDown']
   constructor(props: IAppProps) {
     super(props);
-    this.el_app = React.createRef();
-    this.menu_sound = new Audio(menu_sound);
   }
   componentDidMount(): void {
     this.init();
   }
   init(): void {
-    this.el_app?.current?.focus();
+    if(this.el_app.current){
+      this.el_app.current.focus();
+    }
   }
   handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>): void {
-    event.preventDefault();
-    if(event.code === 'ArrowRight' || event.code === 'ArrowLeft'){
-      EventBus.dispatch('navigate', { x: event.code === 'ArrowRight' ? 1 : -1 });
+    if(this.allowed_x.includes(event.code)){
+      EventBus.dispatch('navigateX', event.code === 'ArrowRight' ? 1 : -1 );
       this.menu_sound.play();
-    } else if(event.code === 'ArrowUp' || event.code === 'ArrowDown'){
-      EventBus.dispatch('navigate', { y: event.code === 'ArrowDown' ? 1 : -1 });
+    } else if(this.allowed_y.includes(event.code)){
+      EventBus.dispatch('navigateY', event.code === 'ArrowDown' ? 1 : -1 );
       this.menu_sound.play();
     }
   }
-  render() { return (
+  render(): React.ReactElement { return (
   <div className="app" ref={this.el_app} tabIndex={0} onKeyDown={this.handleKeyDown.bind(this)}>
     <Wave />
     <div className="menus">
-      <Menu id={0} menu={MenuData} direction="x" />
+      <Menu parent_active={true} menu={this.menu_data} axis="x" />
     </div>
   </div>
   ) }

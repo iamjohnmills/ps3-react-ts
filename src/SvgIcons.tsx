@@ -6,11 +6,11 @@ interface IAppProps {
   name: string,
 }
 
-class SvgIcons extends React.Component<IAppProps, IAppState> {
+class SvgIcons extends React.Component<IAppProps, {}> {
   constructor(props: IAppProps) {
     super(props);
   }
-  render() {
+  render(): React.ReactElement {
     return (
     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 130 130">
       <linearGradient id="gradient" x1="0.5" y1="1" x2="0.5" y2="0">
