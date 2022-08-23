@@ -1,4 +1,4 @@
-#### PS3 XMB Menu
+# PS3 XMB Menu
 
 Made with React + Typescript. Includes SVG + Filters, Canvas + RequestAnimationFrame, and more.
 
