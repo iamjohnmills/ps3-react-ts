@@ -2,7 +2,7 @@ import React from 'react'
 import EventBus from "./EventBus";
 import SvgIcons from "./SvgIcons";
 import MenuItem from "./MenuItem";
-import menu_sound from './menu-click.wav';
+import menu_sound_file from './menu-click.wav';
 
 interface IAppMenu {
   label: string,
@@ -35,6 +35,7 @@ interface IAppState {
 class Menu extends React.Component<IAppProps, IAppState> {
 
   private el_menu = React.createRef<HTMLDivElement>();
+  private menu_sound = new Audio(menu_sound_file);
 
   constructor(props: IAppProps) {
     super(props);
@@ -73,10 +74,18 @@ class Menu extends React.Component<IAppProps, IAppState> {
       return null;
     }
   }
+  handleAudioTone(): void {
+    if(this.menu_sound.duration > 0 && !this.menu_sound.paused){
+      this.menu_sound.pause();
+      this.menu_sound.currentTime = 0;
+    }
+    this.menu_sound.play();
+  }
   handleNavigateX(direction:number): void {
     if(!this.props.parent_active) return;
     const next = this.getNext(direction);
     if(next){
+      this.handleAudioTone();
       this.setState({ active_item: next?.index, left: `-${next?.width * next?.index}px` });
     }
   }
@@ -84,6 +93,7 @@ class Menu extends React.Component<IAppProps, IAppState> {
     if(!this.props.parent_active) return;
     const next = this.getNext(direction);
     if(next){
+      this.handleAudioTone();
       this.setState({ active_item: next?.index, top: `-${next?.height * next?.index + 130}px` });
     }
   }

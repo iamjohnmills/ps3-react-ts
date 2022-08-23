@@ -3,13 +3,13 @@ import EventBus from "./EventBus";
 import Wave from "./Wave";
 import Menu from "./Menu";
 import {MenuData} from "./MenuData"
-import menu_sound_file from './menu-click.wav';
+// import menu_sound_file from './menu-click.wav';
 
 interface IAppProps {}
 
 class App extends React.Component<IAppProps, {}> {
   private el_app = React.createRef<HTMLDivElement>();
-  private menu_sound = new Audio(menu_sound_file);
+  // private menu_sound = new Audio(menu_sound_file);
   private menu_data:Array<any> = MenuData;
   private allowed_x:Array<string> = ['ArrowRight','ArrowLeft']
   private allowed_y:Array<string> = ['ArrowUp','ArrowDown']
@@ -27,10 +27,18 @@ class App extends React.Component<IAppProps, {}> {
   handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>): void {
     if(this.allowed_x.includes(event.code)){
       EventBus.dispatch('navigateX', event.code === 'ArrowRight' ? 1 : -1 );
-      this.menu_sound.play();
+      // if(this.menu_sound.duration > 0 && !this.menu_sound.paused){
+      //   this.menu_sound.pause();
+      //   this.menu_sound.currentTime = 0;
+      // }
+      // this.menu_sound.play();
     } else if(this.allowed_y.includes(event.code)){
       EventBus.dispatch('navigateY', event.code === 'ArrowDown' ? 1 : -1 );
-      this.menu_sound.play();
+      // if(this.menu_sound.duration > 0 && !this.menu_sound.paused){
+      //   this.menu_sound.pause();
+      //   this.menu_sound.currentTime = 0;
+      // }
+      // this.menu_sound.play();
     }
   }
   render(): React.ReactElement { return (
