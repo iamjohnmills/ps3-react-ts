@@ -18,13 +18,13 @@ svg > g:not(.no-filter) { fill: url(#gradient); filter: url(#bevel) }
 .menus > .menu { zoom: 1.2; display: flex; position: relative; left: 0; transition: left 0.3s ease-in-out; }
 .menus > .menu > .item { width: 150px; padding: 0; opacity: 0.5; position: relative; }
 .menus > .menu > .item > .icon { margin-bottom: 5px; width: 80px; display: flex; justify-content: center;  }
-.menus > .menu > .item > .label { width: 80px; display: flex; flex-wrap: nowrap; white-space: nowrap; justify-content: center; opacity: 0; transition: opacity 0.3s ease-in-out;}
-.menus > .menu > .item.active > .label { opacity: 1; }
+.menus > .menu > .item > .label { width: 80px; display: flex; flex-wrap: nowrap; white-space: nowrap; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out;}
+.menus > .menu > .item.active > .label { opacity: 1; visibility: visible}
 .menus > .menu > .item.active { opacity: 1; }
 .menus > .menu > .item > .icon > svg { width: 80px; height: 80px; }
 
-.menus > .menu > .item > .menu { height: 400px; opacity: 0; position: relative; top: -130px; transition: top 0.3s ease-in-out, opacity 0.3s ease-in; }
-.menus > .menu > .item.active > .menu { opacity: 1; }
+.menus > .menu > .item > .menu { height: 400px; visibility: hidden; opacity: 0; position: relative; top: -130px; transition: top 0.3s ease-in-out, opacity 0.3s ease-in; }
+.menus > .menu > .item.active > .menu { opacity: 1; visibility: visible;  }
 
 .menus > .menu > .item > .menu { text-align: left; padding-top: 30px; }
 .menus > .menu > .item > .menu > .item { display: flex; position: relative; opacity: 0.5; line-height: 1.2; align-items: center; white-space: nowrap; padding: 10px 0; transition: padding-top 0.1s ease-in-out; }
