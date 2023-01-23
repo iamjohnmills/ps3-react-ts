@@ -9,15 +9,29 @@ interface IAppProps {}
 
 class App extends React.Component<IAppProps, {}> {
   private el_app = React.createRef<HTMLDivElement>();
-  // private menu_sound = new Audio(menu_sound_file);
   private menu_data:Array<any> = MenuData;
-  private allowed_x:Array<string> = ['ArrowRight','ArrowLeft']
-  private allowed_y:Array<string> = ['ArrowUp','ArrowDown']
+  private allowed_x:Array<string> = ['ArrowRight','ArrowLeft'];
+  private allowed_y:Array<string> = ['ArrowUp','ArrowDown'];
+  private clientX:number = 0;
+  private clientY:number = 0;
   constructor(props: IAppProps) {
     super(props);
   }
   componentDidMount(): void {
     this.init();
+    window.addEventListener('touchstart', (event: React.TouchEvent): void => {
+      this.clientX = event.touches[0].clientX;
+      this.clientY = event.touches[0].clientY;
+    });
+    window.addEventListener('touchend', (event: React.TouchEvent): void => {
+      const distance_x:number = event.changedTouches[0].clientX - this.clientX;
+      const distance_y:number = event.changedTouches[0].clientY - this.clientY;
+      if(Math.abs(distance_x) > 50){
+        EventBus.dispatch('navigateX', distance_x <= 0 ? 1 : -1 );
+      } else if(Math.abs(distance_y) > 50){
+        EventBus.dispatch('navigateY', distance_y <= 0 ? 1 : -1 );
+      }
+    });
   }
   init(): void {
     if(this.el_app.current){
